@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gerador de QR Code</title>
+    <title>Gerador de QR Code - Nitnave</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,6 +19,7 @@
             <p id="erro-msg" role="alert" aria-live="assertive"></p>
             <button type="button" onclick="gerarQR()">Gerar QR Code</button>
             <div id="qrcode-container" aria-label="QR Code gerado"></div>
+            
             <button type="button" id="btn-download" onclick="baixarQR()" hidden>Baixar PNG</button>
             <button type="button" id="btn-download-pdf" onclick="abrirModalPDF()" hidden>Baixar PDF</button>
         </section>
@@ -29,6 +30,11 @@
             <h2 id="modal-titulo">Título do PDF</h2>
             <label for="pdf-titulo">Digite o título</label>
             <input type="text" id="pdf-titulo" placeholder="Ex: Meu QR Code" autocomplete="off">
+            <div class="modal-opcoes">
+                <span class="modal-opcoes-label">Modelo do PDF</span>
+                <label><input type="radio" name="pdf-modelo" value="nitnave" checked> Nitnave</label>
+                <label><input type="radio" name="pdf-modelo" value="petrobras"> Petrobras</label>
+            </div>
             <div class="modal-botoes">
                 <button type="button" onclick="fecharModal()">Cancelar</button>
                 <button type="button" onclick="baixarPDF()">Gerar PDF</button>
@@ -37,11 +43,12 @@
     </dialog>
 
     <footer>
-        <p>Gerador de QR Code</p>
+        <p>Nitnave Logística e Suporte Técnico - Unidade REGAP</p>
     </footer>
 
     <script src="qrcode.min.js"></script>
-    <script src="jspdf.min.js"></script>
+    <script src="pdf-lib.min.js"></script>
+    <script src="fontkit.min.js"></script>
     <script src="index.js"></script>
 </body>
 </html>

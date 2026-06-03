@@ -60,12 +60,12 @@ input {
 }
 
 input:focus {
-    border-color: #007bff;
+    border-color: #0B3C5D;
 }
 
 button {
     padding: 12px 24px;
-    background-color: #007bff;
+    background-color: #0B3C5D;
     color: white;
     border: none;
     border-radius: 6px;
@@ -76,7 +76,7 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #082d46;
 }
 
 #qrcode-container {
@@ -97,11 +97,11 @@ button:hover {
 #btn-download-pdf {
     margin-top: 16px;
     margin-left: 8px;
-    background-color: #dc3545;
+    background-color: #328CC1;
 }
 
 #btn-download-pdf:hover {
-    background-color: #a71d2a;
+    background-color: #256a93;
 }
 
 dialog {
@@ -130,8 +130,7 @@ dialog label {
 .modal-botoes {
     display: flex;
     justify-content: flex-end;
-    gap: 8px;
-    margin-top: 16px;
+    /* margin-top: 16px; */
 }
 
 .modal-botoes button:first-child {
@@ -140,4 +139,29 @@ dialog label {
 
 .modal-botoes button:first-child:hover {
     background-color: #495057;
+}
+
+.modal-opcoes {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 8px 0 4px;
+}
+
+.modal-opcoes-label {
+    font-weight: bold;
+    color: #555;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.modal-opcoes label {
+    font-weight: normal;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 0;
+    cursor: pointer;
 }

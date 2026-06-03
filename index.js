@@ -52,17 +52,65 @@ function fecharModal() {
     document.getElementById("modal-pdf").close();
 }
 
-function baixarPDF() {
+async function baixarPDF() {
     const titulo = document.getElementById("pdf-titulo").value.trim() || "QR Code";
+    const modelo = document.querySelector('input[name="pdf-modelo"]:checked').value;
+    const arquivoPDF = modelo === "petrobras" ? "pdf_petrobras.pdf" : "pdf_nitnave.pdf";
     fecharModal();
 
+    const { PDFDocument, rgb } = PDFLib;
     const canvas = document.querySelector("#qrcode-container canvas");
-    const imgData = canvas.toDataURL("image/png");
-    const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF();
+    const qrPngBytes = await fetch(canvas.toDataURL("image/png")).then(r => r.arrayBuffer());
 
-    pdf.setFontSize(20);
-    pdf.text(titulo, 105, 20, { align: "center" });
-    pdf.addImage(imgData, "PNG", 55, 30, 100, 100);
-    pdf.save(`${titulo}.pdf`);
+    let pdfDoc, page, font, qrImage;
+
+    try {
+        const modeloBytes = await fetch(arquivoPDF).then(r => r.arrayBuffer());
+        pdfDoc = await PDFDocument.load(modeloBytes);
+        pdfDoc.registerFontkit(fontkit);
+        page = pdfDoc.getPages()[0];
+    } catch (e) {
+        alert("Erro ao carregar o PDF base: " + e.message);
+        return;
+    }
+
+    try {
+        const cambriaBytes = await fetch("cambria.ttf").then(r => r.arrayBuffer());
+        font = await pdfDoc.embedFont(cambriaBytes);
+    } catch (e) {
+        alert("Erro ao carregar a fonte: " + e.message);
+        return;
+    }
+
+    try {
+        qrImage = await pdfDoc.embedPng(qrPngBytes);
+    } catch (e) {
+        alert("Erro ao embutir QR Code: " + e.message);
+        return;
+    }
+
+    try {
+        const qrX = 185, qrY = 395, qrW = 228, qrH = 226;
+        const fontSize = 22;
+        const textWidth = font.widthOfTextAtSize(titulo, fontSize);
+        const titleX = (qrX + qrW / 2) - textWidth / 2;
+        const titleY = qrY + qrH + 20;
+
+        page.drawText(titulo, { x: titleX, y: titleY, size: fontSize, font, color: rgb(0.1, 0.1, 0.1) });
+        page.drawImage(qrImage, { x: qrX, y: qrY, width: qrW, height: qrH });
+    } catch (e) {
+        alert("Erro ao desenhar no PDF: " + e.message);
+        return;
+    }
+
+    try {
+        const pdfBytes = await pdfDoc.save();
+        const blob = new Blob([pdfBytes], { type: "application/pdf" });
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = `${titulo}.pdf`;
+        link.click();
+    } catch (e) {
+        alert("Erro ao salvar PDF: " + e.message);
+    }
 }
