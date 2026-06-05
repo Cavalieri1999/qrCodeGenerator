@@ -53,7 +53,7 @@ function fecharModal() {
 }
 
 async function baixarPDF() {
-    const titulo = document.getElementById("pdf-titulo").value.trim() || "QR Code";
+    const titulo = document.getElementById("pdf-titulo").value.trim() || ("pdf-titulo");
     const modelo = document.querySelector('input[name="pdf-modelo"]:checked').value;
     const arquivoPDF = modelo === "petrobras" ? "pdf_petrobras.pdf" : "pdf_nitnave.pdf";
     fecharModal();
