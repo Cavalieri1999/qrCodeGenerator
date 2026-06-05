@@ -1,57 +1,62 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerador de QR Code - Nitnave</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<div class="logo-nitnave">
-    <img src="/LOGO NITNAVE.jpg" alt="">
-</div>
+    <div class="logo-nitnave">
+        <img src="/LOGO NITNAVE.jpg" alt="">
+    </div>
 
-<main class="container">
-    <header>
-        <h1>Gerador de QR Code</h1>
-    </header>
+    <main class="container">
+        <header>
+            <h1>Gerador de QR Code</h1>
+        </header>
 
-    <main>
-        <section class="box" aria-label="Formulário de geração de QR Code">
-            <label for="link-input">Link ou texto</label>
-            <input type="text" id="link-input" placeholder="Cole o link ou texto aqui..." aria-required="true">
-            <p id="erro-msg" role="alert" aria-live="assertive"></p>
-            <button type="button" onclick="gerarQR()">Gerar QR Code</button>
-            <div id="qrcode-container" aria-label="QR Code gerado"></div>           
-            <button type="button" id="btn-download" onclick="baixarQR()" hidden>Baixar PNG</button>
-            <button type="button" id="btn-download-pdf" onclick="abrirModalPDF()" hidden>Baixar PDF</button>
-        </section>
+        <main>
+            <section class="box" aria-label="Formulário de geração de QR Code">
+                <label for="link-input">Link ou texto</label>
+                <input type="text" id="link-input" placeholder="Cole o link ou texto aqui..." aria-required="true">
+                <p id="erro-msg" role="alert" aria-live="assertive"></p>
+                <button type="button" onclick="gerarQR()">Gerar QR Code</button>
+                <div id="qrcode-container" aria-label="QR Code gerado"></div>
+                <button type="button" id="btn-download" onclick="baixarQR()" hidden>Baixar PNG</button>
+                <button type="button" id="btn-download-pdf" onclick="abrirModalPDF()" hidden>Baixar PDF</button>
+            </section>
+        </main>
+
+        <dialog id="modal-pdf" aria-labelledby="modal-titulo">
+            <form method="dialog">
+                <h2 id="modal-titulo">Título do PDF</h2>
+                <label for="pdf-titulo">Digite o título</label>
+                <input type="text" id="pdf-titulo" placeholder="Ex: Meu QR Code" autocomplete="off">
+                <div class="modal-opcoes">
+                </div>
+                <div class="modal-opcoes">
+                    <span class="modal-opcoes-label">Modelo do PDF</span>
+                    <label><input type="radio" name="pdf-modelo" value="nitnave"> Nitnave</label>
+                    <label><input type="radio" name="pdf-modelo" value="petrobras"> Petrobras</label>
+                </div>
+                <div class="modal-botoes">
+                    <button type="button" onclick="fecharModal()">Cancelar</button>
+                    <button type="button" onclick="baixarPDF()">Gerar PDF</button>
+                </div>
+            </form>
+        </dialog>
+        <footer>
+            <p>Nitnave Offshore Solutions - Unidade REGAP</p>
+            <p class="footer-dev">Desenvolvido por Matheus Cavalieri</p>
+        </footer>
     </main>
-
-    <dialog id="modal-pdf" aria-labelledby="modal-titulo">
-        <form method="dialog">
-            <h2 id="modal-titulo">Título do PDF</h2>
-            <label for="pdf-titulo">Digite o título</label>
-            <input type="text" id="pdf-titulo" placeholder="Ex: Meu QR Code" autocomplete="off">
-            <div class="modal-opcoes">
-                <span class="modal-opcoes-label">Modelo do PDF</span>
-                <label><input type="radio" name="pdf-modelo" value="nitnave" checked> Nitnave</label>
-                <label><input type="radio" name="pdf-modelo" value="petrobras"> Petrobras</label>
-            </div>
-            <div class="modal-botoes">
-                <button type="button" onclick="fecharModal()">Cancelar</button>
-                <button type="button" onclick="baixarPDF()">Gerar PDF</button>
-            </div>
-        </form>
-    </dialog>
-    <footer>
-        <p>Nitnave Offshore Solutions - Unidade REGAP</p>
-        <p class="footer-dev">Desenvolvido por Matheus Cavalieri</p>
-    </footer>
-</main>
     <script src="qrcode.min.js"></script>
     <script src="pdf-lib.min.js"></script>
     <script src="fontkit.min.js"></script>
     <script src="index.js"></script>
 </body>
+
 </html>

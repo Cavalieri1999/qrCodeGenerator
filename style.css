@@ -41,7 +41,7 @@ main {
 
 label {
     display: block;
-    margin-bottom: 8px;
+    margin: 2px 0 8px 0;
     font-weight: bold;
     color: #555;
 }
@@ -59,7 +59,7 @@ footer {
     color: #999;
 }
 
-input {
+#pdf-titulo,#link-input {
     padding: 12px;
     width: 280px;
     margin-bottom: 15px;
@@ -68,10 +68,10 @@ input {
     font-size: 14px;
     outline: none;
 }
-
 input:focus {
     border-color: #0B3C5D;
 }
+
 
 button {
     padding: 12px 24px;
@@ -159,8 +159,7 @@ dialog label {
 .modal-opcoes {
     display: flex;
     flex-direction: column;
-    gap: 2px;
-    margin: 8px 0 4px;
+    text-align: center;
 }
 
 .modal-opcoes-label {
@@ -170,8 +169,14 @@ dialog label {
     display: block;
     margin-bottom: 2px;
 }
+.opcao-line {
+    display: flex;
+    align-items: center; /* Alinha verticalmente o input e a label ao centro */
+    gap: 5px; /* Adiciona um pequeno espaço entre o rádio e o texto */
+    margin-bottom: 10px; /* Opcional: dá um espaço entre as opções caso fiquem uma embaixo da outra */
+}
 
-.modal-opcoes label {
+/* .modal-opcoes label {
     font-weight: normal;
     color: #333;
     display: flex;
@@ -179,7 +184,7 @@ dialog label {
     gap: 4px;
     margin-bottom: 0;
     cursor: pointer;
-}
+} */
 footer p{
     text-align: center;
 }
