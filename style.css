@@ -1,14 +1,24 @@
+*{
+    margin: 0
+}
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     min-height: 100vh;
     background-color: #f0f2f5;
     margin: 0;
 }
-
+.container{
+     display: flex; 
+     flex-direction: column;
+     align-items: center;
+     justify-content: center; 
+}
+header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 header h1 {
     font-size: 1.5rem;
     margin-bottom: 16px;
@@ -110,7 +120,12 @@ dialog {
     padding: 30px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     width: 320px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
+
 
 dialog::backdrop {
     background: rgba(0,0,0,0.4);
@@ -164,4 +179,17 @@ dialog label {
     gap: 4px;
     margin-bottom: 0;
     cursor: pointer;
+}
+footer p{
+    text-align: center;
+}
+.logo-nitnave {
+    display: flex;
+    justify-content: center;
+    padding: 12px 0;
+}
+.logo-nitnave img{
+    width: clamp(80px, 15vw, 180px);
+    height: auto;
+    background-color: black;
 }

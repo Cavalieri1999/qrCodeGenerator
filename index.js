@@ -38,7 +38,7 @@ function gerarQR() {
 function baixarQR() {
     const canvas = document.querySelector("#qrcode-container canvas");
     const link = document.createElement("a");
-    link.download = "qrcode.png";
+    link.download = ("pdf-titulo");
     link.href = canvas.toDataURL("image/png");
     link.click();
 }
@@ -95,8 +95,9 @@ async function baixarPDF() {
         const textWidth = font.widthOfTextAtSize(titulo, fontSize);
         const titleX = (qrX + qrW / 2) - textWidth / 2;
         const titleY = qrY + qrH + 20;
+        page.drawText(titulo, { x: titleX, y: titleY, size: fontSize, font, color: rgb(0, 0.2705, 0.7098) });
 
-        page.drawText(titulo, { x: titleX, y: titleY, size: fontSize, font, color: rgb(0.1, 0.1, 0.1) });
+        // page.drawText(titulo, { x: titleX, y: titleY, size: fontSize, font, color: rgb(0, 69, 181) });
         page.drawImage(qrImage, { x: qrX, y: qrY, width: qrW, height: qrH });
     } catch (e) {
         alert("Erro ao desenhar no PDF: " + e.message);

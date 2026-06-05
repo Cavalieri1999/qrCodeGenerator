@@ -7,7 +7,11 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="logo-nitnave">
+    <img src="/LOGO NITNAVE.jpg" alt="">
+</div>
 
+<main class="container">
     <header>
         <h1>Gerador de QR Code</h1>
     </header>
@@ -18,8 +22,7 @@
             <input type="text" id="link-input" placeholder="Cole o link ou texto aqui..." aria-required="true">
             <p id="erro-msg" role="alert" aria-live="assertive"></p>
             <button type="button" onclick="gerarQR()">Gerar QR Code</button>
-            <div id="qrcode-container" aria-label="QR Code gerado"></div>
-            
+            <div id="qrcode-container" aria-label="QR Code gerado"></div>           
             <button type="button" id="btn-download" onclick="baixarQR()" hidden>Baixar PNG</button>
             <button type="button" id="btn-download-pdf" onclick="abrirModalPDF()" hidden>Baixar PDF</button>
         </section>
@@ -41,11 +44,11 @@
             </div>
         </form>
     </dialog>
-
     <footer>
         <p>Nitnave Offshore Solutions - Unidade REGAP</p>
+        <p class="footer-dev">Desenvolvido por Matheus Cavalieri</p>
     </footer>
-
+</main>
     <script src="qrcode.min.js"></script>
     <script src="pdf-lib.min.js"></script>
     <script src="fontkit.min.js"></script>
