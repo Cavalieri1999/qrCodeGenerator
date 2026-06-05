@@ -95,7 +95,7 @@ async function baixarPDF() {
         const textWidth = font.widthOfTextAtSize(titulo, fontSize);
         const titleX = (qrX + qrW / 2) - textWidth / 2;
         const titleY = qrY + qrH + 20;
-        page.drawText(titulo, { x: titleX, y: titleY, size: fontSize, font, color: rgb(0, 0.2705, 0.7098) });
+        page.drawText(titulo, { x: titleX, y: titleY, size: fontSize, font, color: rgb(0.0431, 0.0549, 0.1922) });
 
         // page.drawText(titulo, { x: titleX, y: titleY, size: fontSize, font, color: rgb(0, 69, 181) });
         page.drawImage(qrImage, { x: qrX, y: qrY, width: qrW, height: qrH });
@@ -107,10 +107,12 @@ async function baixarPDF() {
     try {
         const pdfBytes = await pdfDoc.save();
         const blob = new Blob([pdfBytes], { type: "application/pdf" });
+        const blobUrl = URL.createObjectURL(blob);
         const link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
+        link.href = blobUrl;
         link.download = `${titulo}.pdf`;
         link.click();
+        window.open(blobUrl, "_blank");
     } catch (e) {
         alert("Erro ao salvar PDF: " + e.message);
     }
